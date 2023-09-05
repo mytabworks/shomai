@@ -1,0 +1,7 @@
+/node_modules
+/.cache
+/.parcel-cache
+/src
+/dist/*
+!/dist/index.js
+!/dist/index.d.ts
