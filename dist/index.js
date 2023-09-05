@@ -70,7 +70,7 @@ const $091c930e13b125ed$export$8d0dd255bc66a1b5 = (store, selector)=>{
             (callback)=>{
                 store.setState((prev)=>{
                     const value = (0, $e0afaa5316535c17$export$5db42211b1fe4ea5)(selector, prev);
-                    return (0, $e0afaa5316535c17$export$7ed8d4c159f23ff1)(selector, typeof callback === "function" ? callback(value) : value, {
+                    return (0, $e0afaa5316535c17$export$7ed8d4c159f23ff1)(selector, typeof callback === "function" ? callback(value) : callback, {
                         ...prev
                     });
                 });

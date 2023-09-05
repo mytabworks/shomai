@@ -63,7 +63,7 @@ export const useStoreSelectorState = <S = any, P = any>(store: ReturnType<typeof
         return [state, (callback: S | ((state: S) => S)) => {
             store.setState(prev => {
                 const value = chainedDataIndexExtractor<P, S>(selector, prev)
-                return chainedDataIndexToObject(selector, typeof callback === 'function' ? (callback as any)(value) : value, {...prev})
+                return chainedDataIndexToObject(selector, typeof callback === 'function' ? (callback as any)(value) : callback, {...prev})
             })
         }]
     }, [state, selector])
