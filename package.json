@@ -1,7 +1,7 @@
 {
   "name": "shomai",
-  "version": "1.0.0",
-  "description": "A small, fast and scalable state-management solution for react.",
+  "version": "1.0.1",
+  "description": "A small, easy, blazingly fast and scalable state-management solution for react.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "browserslist": [

@@ -1,5 +1,5 @@
 # shomai
-A small, fast and scalable state-management solution for react.
+A small, easy, blazingly fast and scalable state-management solution for react.
 
 // sample-store.ts
 ```js
@@ -16,7 +16,7 @@ export const sampleStore = createStore<SampleStore>({
 })
 ```
 
-// HelloWorld.ts
+// HelloWorld.tsx
 ```js
 import React from 'react'
 import { useStore, useStoreSelectorState } from 'shomai'
