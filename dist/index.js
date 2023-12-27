@@ -1,5 +1,4 @@
 var $dMEVx$react = require("react");
-var $dMEVx$usesyncexternalstoreshim = require("use-sync-external-store/shim");
 
 function $parcel$export(e, n, v, s) {
   Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
@@ -8,7 +7,6 @@ function $parcel$export(e, n, v, s) {
 $parcel$export(module.exports, "createStore", function () { return $091c930e13b125ed$export$f51a9068ac82ea43; });
 $parcel$export(module.exports, "useStore", function () { return $091c930e13b125ed$export$6ccbb43953eebf8; });
 $parcel$export(module.exports, "useStoreSelectorState", function () { return $091c930e13b125ed$export$8d0dd255bc66a1b5; });
-
 
 const $e0afaa5316535c17$export$7ed8d4c159f23ff1 = (dataIndex, dataIndexValue, rewrite = {})=>{
     return dataIndex.split(".").reduce((result, value, index, array)=>{
@@ -59,7 +57,7 @@ const $091c930e13b125ed$export$f51a9068ac82ea43 = (initialState, onChange)=>{
     };
 };
 const $091c930e13b125ed$export$6ccbb43953eebf8 = (store, selector)=>{
-    return (0, $dMEVx$usesyncexternalstoreshim.useSyncExternalStore)(store.subscribe, ()=>selector(store.getState()), ()=>selector(store.getServerSideState()));
+    return (0, $dMEVx$react.useSyncExternalStore)(store.subscribe, ()=>selector(store.getState()), ()=>selector(store.getServerSideState()));
 };
 const $091c930e13b125ed$export$8d0dd255bc66a1b5 = (store, selector)=>{
     const state = $091c930e13b125ed$export$6ccbb43953eebf8(store, (0, $dMEVx$react.useCallback)((prev)=>(0, $e0afaa5316535c17$export$5db42211b1fe4ea5)(selector, prev), [

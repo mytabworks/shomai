@@ -1,5 +1,4 @@
-import { useCallback, useMemo } from "react";
-import { useSyncExternalStore } from "use-sync-external-store/shim"
+import { useCallback, useMemo, useSyncExternalStore } from "react";
 import { chainedDataIndexExtractor, chainedDataIndexToObject } from "./utils/chainedDataIndex";
 
 export const createStore = <P = any>(initialState: P, onChange?: (state: P) => void) => {
