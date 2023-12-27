@@ -2,7 +2,7 @@ import { useCallback, useMemo } from "react";
 import { useSyncExternalStore } from "use-sync-external-store/shim"
 import { chainedDataIndexExtractor, chainedDataIndexToObject } from "./utils/chainedDataIndex";
 
-export const createStore = <P = any>(initialState: P) => {
+export const createStore = <P = any>(initialState: P, onChange?: (state: P) => void) => {
     let currentState = initialState
 
     let serverSideState: P | null = null
@@ -14,6 +14,8 @@ export const createStore = <P = any>(initialState: P) => {
     const setState = (fn: (state: P) => P) => {
 
         currentState = fn(currentState)
+
+        if(typeof onChange === 'function') onChange(currentState)
         
         listeners.forEach((listener) => listener())
     }

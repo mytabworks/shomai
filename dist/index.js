@@ -27,13 +27,14 @@ const $e0afaa5316535c17$export$5db42211b1fe4ea5 = (dataIndex, item)=>{
 };
 
 
-const $091c930e13b125ed$export$f51a9068ac82ea43 = (initialState)=>{
+const $091c930e13b125ed$export$f51a9068ac82ea43 = (initialState, onChange)=>{
     let currentState = initialState;
     let serverSideState = null;
     const getState = ()=>currentState;
     const listeners = new Set();
     const setState = (fn)=>{
         currentState = fn(currentState);
+        if (typeof onChange === "function") onChange(currentState);
         listeners.forEach((listener)=>listener());
     };
     const getServerSideState = ()=>serverSideState ?? initialState;

@@ -1,4 +1,4 @@
-export const createStore: <P = any>(initialState: P) => {
+export const createStore: <P = any>(initialState: P, onChange?: (state: P) => void) => {
     getState: () => P;
     setState: (fn: (state: P) => P) => void;
     getServerSideState: () => P;
