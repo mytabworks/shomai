@@ -1,7 +1,10 @@
 import { useCallback, useMemo, useSyncExternalStore } from "react";
 import { chainedDataIndexExtractor, chainedDataIndexToObject } from "./utils/chainedDataIndex";
+import { FlattenObject } from "./type";
 
-export const createStore = <P = any>(initialState: P, onChange?: (state: P) => void) => {
+export * from "./type";
+
+export const createStore = <P = Record<string, any>>(initialState: P, onChange?: (state: P) => void) => {
     let currentState = initialState
 
     let serverSideState: P | null = null
@@ -49,7 +52,7 @@ export const createStore = <P = any>(initialState: P, onChange?: (state: P) => v
     }
 }
 
-export const useStore = <S = any, P = any>(store: ReturnType<typeof createStore<P>>, selector: (state: P) => S) => {
+export const useStore = <P = Record<string, any>, S = any>(store: ReturnType<typeof createStore<P>>, selector: (state: P) => S) => {
     return useSyncExternalStore<S>(
         store.subscribe, 
         () => selector(store.getState()),
@@ -57,14 +60,14 @@ export const useStore = <S = any, P = any>(store: ReturnType<typeof createStore<
     )
 }
 
-export const useStoreSelectorState = <S = any, P = any>(store: ReturnType<typeof createStore<P>>, selector: string): [S, (callback: S | ((state: S) => S)) => void] => {
-    const state = useStore(store, useCallback((prev) => chainedDataIndexExtractor<P, S>(selector, prev), [selector]))
+export const useStoreSelectorState = <P = Record<string, any>, K extends keyof FlattenObject<P> = keyof FlattenObject<P>, S = FlattenObject<P>[K]>(store: ReturnType<typeof createStore<P>>, selector: K): [S, (callback: S | ((state: S) => S)) => void] => {
+    const state = useStore(store, useCallback((prev) => chainedDataIndexExtractor<P, S>(selector as string, prev), [selector]))
 
     return useMemo(() => {
         return [state, (callback: S | ((state: S) => S)) => {
             store.setState(prev => {
-                const value = chainedDataIndexExtractor<P, S>(selector, prev)
-                return chainedDataIndexToObject(selector, typeof callback === 'function' ? (callback as any)(value) : callback, {...prev})
+                const value = chainedDataIndexExtractor<P, S>(selector as string, prev)
+                return chainedDataIndexToObject(selector as string, typeof callback === 'function' ? (callback as any)(value) : callback, {...prev})
             })
         }]
     }, [state, selector])
