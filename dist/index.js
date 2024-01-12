@@ -1,5 +1,21 @@
 var $dMEVx$react = require("react");
 
+function $parcel$exportWildcard(dest, source) {
+  Object.keys(source).forEach(function(key) {
+    if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) {
+      return;
+    }
+
+    Object.defineProperty(dest, key, {
+      enumerable: true,
+      get: function get() {
+        return source[key];
+      }
+    });
+  });
+
+  return dest;
+}
 function $parcel$export(e, n, v, s) {
   Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
 }
@@ -23,6 +39,9 @@ const $e0afaa5316535c17$export$5db42211b1fe4ea5 = (dataIndex, item)=>{
         return result && result[value];
     }, item);
 };
+
+
+var $dfdc30f9bec4f3b3$exports = {};
 
 
 const $091c930e13b125ed$export$f51a9068ac82ea43 = (initialState, onChange)=>{
@@ -80,6 +99,7 @@ const $091c930e13b125ed$export$8d0dd255bc66a1b5 = (store, selector)=>{
         selector
     ]);
 };
+$parcel$exportWildcard(module.exports, $dfdc30f9bec4f3b3$exports);
 
 
 //# sourceMappingURL=index.js.map
